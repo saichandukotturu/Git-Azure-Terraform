@@ -17,12 +17,9 @@ terraform {
 
 provider "azurerm" {
   features {}
- 
 }
 
-provider "google" {
-  # Configuration options
-}
-provider "aws" {
-  # Configuration options
-}
+provider "aws" {}
+
+provider "google" {}
+
