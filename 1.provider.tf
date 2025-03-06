@@ -16,8 +16,8 @@ terraform {
 
   backend "azurerm" {
 
-    resource_group_name  = "rg1"
-    storage_account_name = "devsecopstfstatedev"
+    resource_group_name  = "Common_rg"
+    storage_account_name = "devsecoptfstatedev"
     container_name       = "devtfstate"
     key                  = "dev.tfstate"
 
