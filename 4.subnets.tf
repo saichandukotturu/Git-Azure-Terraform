@@ -18,6 +18,15 @@ resource "azurerm_subnet" "vnet1-subnet3" {
   address_prefixes     = ["10.45.3.0/24"]
 }
 
+#AAAAAAAAAAAAAAAAAAAAAAAA
+#BBBBBBBBBBBBBBBBBBBBBBBBBBBB
+#CCCCCCCCCCCCCCCCCCCCCCCCCCCC
+#DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+#EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+
+
+
 
 resource "azurerm_subnet" "vnet2-subnet1" {
   name                 = "${azurerm_virtual_network.vnet2.name}-subnet1"
