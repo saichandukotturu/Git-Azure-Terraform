@@ -13,6 +13,15 @@ terraform {
       version = "6.23.0"
     }
   }
+
+  backend "azurerm" {
+
+    resource_group_name  = "rg1"
+    storage_account_name = "devsecopstfstatedev"
+    container_name       = "devtfstate"
+    key                  = "dev.tfstate"
+
+  }
 }
 
 provider "azurerm" {
