@@ -3,7 +3,7 @@ resource "azurerm_resource_group" "rg1" {
   location = "eastus"
   tags = {
     Environment = "Production"
-    Project = "Chandu"
+    Project     = "Chandu"
   }
 }
 resource "azurerm_resource_group" "rg2" {
