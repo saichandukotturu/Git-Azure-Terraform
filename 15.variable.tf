@@ -9,5 +9,5 @@ variable "vnet2_address_space" {}
 variable "vnet1_subnet_address_prefixes" {}
   
 variable "vnet2_subnet_address_prefixes" {}
-varible "straccount1"  {}
+variable "straccount1"  {}
 
