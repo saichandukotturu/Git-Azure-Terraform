@@ -9,3 +9,4 @@ vnet2_subnet_address_prefixes = ["172.16.1.0/24", "172.16.2.0/24", "172.16.3.0/2
 straccount1                   = "devsecopsdev01"
 straccount2                  = "devsecopsdev02"
 straccount3                  = "devsecopsdev03"
+straccount4                  = "devsecopsdev04"

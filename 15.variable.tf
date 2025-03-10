@@ -12,4 +12,5 @@ variable "vnet2_subnet_address_prefixes" {}
 variable "straccount1"  {}
 variable "straccount2"  {}
 variable "straccount3"  {}
+variable "straccount4"  {}
 
