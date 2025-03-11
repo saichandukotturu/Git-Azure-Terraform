@@ -1,0 +1,32 @@
+name: Terraform workflow for Deploying Azure Resources
+on:
+  push:
+    branches:
+      -development
+      -Production
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+jobs: 
+terraform-initiate:
+    if: ${{ vars.TERRAFORM_DESTROY_AZ == 'NO' }}
+    name: 'Terraform Initialization'
+    runs-on: ubuntu-latest
+    # defaults:
+    #   run:
+    #     working-directory: ./azure-tfcode
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.11.1
+      - name: Terraform Version Checking
+        run: terraform version
+      - name: Print Runner Name
+        run: echo $(hostname)
