@@ -78,7 +78,7 @@ jobs:
     if: ${{ vars.TERRAFORM_DESTROY_AZ == 'NO' }}
     name: 'Terraform apply'
     runs-on: ubuntu-latest
-    needs: terraform-initiate
+    needs: terraform-plan
     # defaults:
     #   run:
     #     working-directory: ./azure-tfcode
