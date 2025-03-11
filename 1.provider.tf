@@ -18,9 +18,9 @@ terraform {
   backend "azurerm" {
 
     resource_group_name  = "Common_rg"
-    storage_account_name = "devsecoptfstateprod"
-    container_name       = "prodtfstate"
-    key                  = "prod.tfstate"
+    storage_account_name = "devsecoptfstatedev"
+    container_name       = "devtfstate"
+    key                  = "dev.tfstate"
 
   }
 }

@@ -1,18 +1,20 @@
-name: Terraform workflow for Deploying Azure Resources
+name: Terraform Workflow For Deploying Azure Resources
 on:
   push:
     branches:
-      -development
-      -Production
+      - development
+      - production
+      - workflows
 
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
   ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  TERRAFORM_DESTROY: ${{ vars.TERRAFORM_DESTROY_AZ }}
 
-jobs: 
-terraform-initiate:
+jobs:
+  terraform-initiate:
     if: ${{ vars.TERRAFORM_DESTROY_AZ == 'NO' }}
     name: 'Terraform Initialization'
     runs-on: ubuntu-latest
@@ -25,8 +27,32 @@ terraform-initiate:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.11.1
+          terraform_version: 1.11.0
       - name: Terraform Version Checking
         run: terraform version
       - name: Print Runner Name
         run: echo $(hostname)
+
+  terraform-plan:
+    if: ${{ vars.TERRAFORM_DESTROY_AZ == 'NO' }}
+    name: 'Terraform Plan'
+    runs-on: ubuntu-latest
+    needs: terraform-initiate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.11.0
+      - name: Terraform Init, Format, Validate
+        run: terraform init && terraform fmt && terraform validate && echo $(hostname)
+      - name: Print Branch Reference
+        run: echo The Current Branch Is $GITHUB_REF
+      - name: Terraform Plan
+        if: env.TERRAFORM_DESTROY == 'NO'
+        run: |
+          if [ ${GITHUB_REF} == 'refs/heads/workflows' ]; then
+            echo "Running Terraform Plan For workflows Environment"
+            terraform plan
+          fi
