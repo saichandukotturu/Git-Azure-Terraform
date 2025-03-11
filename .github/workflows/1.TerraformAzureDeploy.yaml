@@ -33,7 +33,7 @@ jobs:
       - name: Print Runner Name
         run: echo $(hostname)
 
-terraform-plan:
+  terraform-plan:
     if: ${{ vars.TERRAFORM_DESTROY_AZ == 'NO' }}
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
