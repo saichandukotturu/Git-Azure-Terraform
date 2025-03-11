@@ -59,7 +59,3 @@ resource "azurerm_storage_account" "straccount5" {
     Project     = var.Project
   }
 }
-
-#testing cherry pick 1
-#testing cherry pick 2
-#testing cherry pick 3
