@@ -1,6 +1,6 @@
 rg1_name                      = "rg1"
 location                      = "eastus"
-Environment                   = "Prod"
+Environment                   = "Dev"
 Project                       = "chandu"
 vnet1_address_space           = ["10.45.0.0/16"]
 vnet2_address_space           = ["172.16.0.0/16"]
