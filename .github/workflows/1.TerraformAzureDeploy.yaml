@@ -103,7 +103,7 @@ jobs:
             -backend-config="storage_account_name=devsecoptfstatedev" \
             -backend-config="container_name=devtfstate" \
             -backend-config="key=dev.tfstate"
-            terraform apply --var-file=dev.tfvars
+            terraform apply --var-file=dev.tfvars --auto-approve
           elif [ ${GITHUB_REF} == 'refs/heads/production' ]; then
           echo "Running Terraform apply For Production Environment"
             export ARM_SUBSCRIPTION_ID=${{ secrets.PROD_SUBSCRIPTION_ID }}
@@ -111,7 +111,7 @@ jobs:
             -backend-config="storage_account_name=devsecoptfstateprod" \
             -backend-config="container_name=prodtfstate" \
             -backend-config="key=prod.tfstate"
-            terraform apply --var-file=prod.tfvars
+            terraform apply --var-file=prod.tfvars --auto-approve
           else
            echo "The Branch Is Not Development Or Production. Please Raise A PR To The Development Or Production Branch"         
           fi
