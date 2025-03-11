@@ -32,3 +32,30 @@ jobs:
         run: terraform version
       - name: Print Runner Name
         run: echo $(hostname)
+
+terraform-plan:
+    if: ${{ vars.TERRAFORM_DESTROY_AZ == 'NO' }}
+    name: 'Terraform Plan'
+    runs-on: ubuntu-latest
+    needs: terraform-initiate
+    # defaults:
+    #   run:
+    #     working-directory: ./azure-tfcode
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.11.0
+      - name: Terraform Init, Format, Validate
+        run: terraform init && terraform fmt && terraform validate && echo $(hostname)
+      - name: Print Branch Reference
+        run: echo The Current Branch Is $GITHUB_REF
+      - name: Terraform Plan
+        if: env.TERRAFORM_DESTROY == 'NO'
+        run: |
+          if [ ${GITHUB_REF} == 'refs/heads/workflows' ]; then
+            echo "Running Terraform Plan For workflows Environment"
+            terraform plan
+          fi
