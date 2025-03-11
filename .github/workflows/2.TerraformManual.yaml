@@ -64,7 +64,6 @@ jobs:
       - name: Print Branch Reference
         run: echo The Current Branch Is $GITHUB_REF
       - name: Terraform Plan
-        if: env.TERRAFORM_DESTROY == 'NO'
         run: |
          if [ ${GITHUB_REF} == 'refs/heads/development' ]; then
             echo "Running Terraform Plan For Development Environment"
@@ -105,7 +104,6 @@ jobs:
       - name: Print Branch Reference
         run: echo The Current Branch Is $GITHUB_REF
       - name: Terraform Apply
-        if: env.TERRAFORM_DESTROY == 'NO'
         run: |
          if [ ${GITHUB_REF} == 'refs/heads/development' ]; then
             echo "Running Terraform apply For Development Environment"
@@ -146,7 +144,6 @@ jobs:
       - name: Print Branch Reference
         run: echo The Current Branch Is $GITHUB_REF
       - name: Terraform Destroy
-        if: env.TERRAFORM_DESTROY == 'NO'
         run: |
          if [ ${GITHUB_REF} == 'refs/heads/development' ]; then
             echo "Running Terraform Destroy For Development Environment"
