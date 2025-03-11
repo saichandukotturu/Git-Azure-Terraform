@@ -48,8 +48,8 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.11.0
-      - name: Terraform Init, Format, Validate
-        run: terraform init && terraform fmt && terraform validate && echo $(hostname)
+      - name: Print Runner Name
+        run: echo $(hostname)
       - name: Print Branch Reference
         run: echo The Current Branch Is $GITHUB_REF
       - name: Terraform Plan
